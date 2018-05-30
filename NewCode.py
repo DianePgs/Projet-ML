@@ -49,8 +49,8 @@ visual_ex()
 
 # on ne prend que les images de 2 classes différentes
 def usps_2classes(int1, int2, p) :
-    index_train = np.concatenate((np.where(y_train==int1)[0], np.where(y_train==int2)[0]))
-    index_test = np.concatenate((np.where(y_test==int1)[0], np.where(y_test==int2)[0]))   
+    index_train = np.sort(np.concatenate((np.where(y_train==int1)[0], np.where(y_train==int2)[0])))
+    index_test = np.sort(np.concatenate((np.where(y_test==int1)[0], np.where(y_test==int2)[0])))   
     nb_tot = len(index_train) + len(index_test)
     nb_train = int(p*nb_tot)
     if(nb_train < len(index_train)):
