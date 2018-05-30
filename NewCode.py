@@ -109,7 +109,7 @@ def createG(Adj,states) :
     nx.set_node_attributes(G, dict(zip(G.node(),list(states))),'state')
     return G
     
-def createAdj(x_train12, x_test12, sigma, yChapeau) :
+def createAdj(x_train12, x_test12, sigma) :
     x = np.concatenate((x_train12,x_test12))
     n = x.shape[0]
     Adj = np.zeros((n,n))
