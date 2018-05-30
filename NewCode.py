@@ -108,6 +108,7 @@ def createG(Adj,states) :
     
 def createAdj(x_train12, x_test12, sigma) :
     x = np.concatenate((x_train12,x_test12))
+    x2=np.dot(x,np.transpose(x))
     n = x.shape[0]
     Adj = np.zeros((n,n))
     for i in range (n) :
