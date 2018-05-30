@@ -112,7 +112,8 @@ def createAdj(x_train12, x_test12, sigma) :
     Adj = np.zeros((n,n))
     for i in range (n) :
         for j in range (n) :
-            Adj[i][j] = sum((x[i] - x[j])**2)
+            #Adj[i][j] = sum((x[i] - x[j])**2)
+            Adj[i][j] = x2[i][i] + x2[j][j] -2*np.dot(x[i],x[j])
     Adj = np.exp(-np.multiply(Adj,sigma))
     
     return Adj
