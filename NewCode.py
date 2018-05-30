@@ -49,18 +49,15 @@ visual_ex()
 
 # on ne prend que les images de 2 classes différentes
 def usps_2classes(int1, int2, p) :
-    index_train = np.sort(np.concatenate((np.where(y_train==int1)[0], np.where(y_train==int2)[0])))
-    index_test = np.sort(np.concatenate((np.where(y_test==int1)[0], np.where(y_test==int2)[0])))   
-    nb_tot = len(index_train) + len(index_test)
-    nb_train = int(p*nb_tot)
-    if(nb_train < len(index_train)):
-        index_train = index_train[:nb_train].squeeze()
-        index_test_add = index_train[nb_train:].squeeze()
-        return x_train[index_train], y_train[index_train], np.concatenate((x_train[index_test_add], x_test)), np.concatenate((y_train[index_test_add], y_test))
-    else:
-        index_train_add = index_test[:nb_train-len(index_train)]
-        index_test = index_test[nb_train-len(index_train):]
-        return np.concatenate((x_train[index_train], x_test[index_train_add])), np.concatenate((y_train[index_train],y_test[index_train_add])), x_test[index_test], y_test[index_test]
+    x = np.concatenate((x_train,x_test))
+    y = np.concatenate((y_train,y_test))
+    index = np.sort(np.concatenate((np.where(y==int1)[0], np.where(y==int2)[0])))
+    x = x[index]
+    y = y[index]
+    n = x.shape[0]
+    s = int(n*p)
+    return x[:s], y[:s], x[s:], y[s:]
+
 
 x_train12, y_train12, x_test12, y_test12 = usps_2classes(1,2, 0.1)
 state = np.concatenate((y_train12,np.array([0]*len(y_test12))))
