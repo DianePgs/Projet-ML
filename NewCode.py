@@ -164,7 +164,7 @@ def plotErrorSigma(x_train12, x_test12, state) :
     plt.title("Score en fonction de sigma")
     
 def plotErrorP(x_train, x_test) : 
-    P = np.arange(0.1,1.1,0.1)
+    P = np.arange(0.1,0.5,0.1)
     Score = []
     for p in P :
         x_train12, y_train12, x_test12, y_test12 = usps_2classes(1,2, 0.1)
@@ -173,7 +173,7 @@ def plotErrorP(x_train, x_test) :
         l=len(x_train12)
         u=len(x_test12)
         score=[]
-        test_sigma_log=np.arange(-2.2,0.1,0.1)
+        test_sigma_log=np.arange(-1.2,0.1,0.1)
         test_sigma=10**(test_sigma_log)
         for sigma in test_sigma :
             Adj = createAdj(x_train12, x_test12, sigma)
